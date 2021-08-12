@@ -1,0 +1,30 @@
+.tickerListItem {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #dddddd;
+}
+
+.tickerDetailsList {
+  display: flex;
+}
+
+.tickerDetail_ticker {
+  display: flex;
+  width: 70px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+  background-color: #005e08;
+  border-radius: 20px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.tickerDetailsList_item {
+  width: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 20px;
+  margin-left: 20px;
+}

@@ -1,13 +1,13 @@
-import { useDispatch } from "react-redux";
-// import { filterContacts } from "../../../redux/contacts/contactsActions";
-import styles from "./SearchBar.module.scss";
+import { useDispatch } from 'react-redux';
+import { filterTickers } from '../../redux/tickers/tickers-actions';
+import styles from './SearchBar.module.scss';
 
 export default function SearchBar() {
   const dispatch = useDispatch();
 
-  //   const onFilterChange = (e) => {
-  //     dispatch(filterContacts(e.target.value));
-  //   };
+  const onFilterChange = e => {
+    dispatch(filterTickers(e.target.value));
+  };
 
   return (
     <header className={styles.Searchbar}>
@@ -23,7 +23,7 @@ export default function SearchBar() {
           // value={this.state.query}
           autoComplete="off"
           placeholder="Search tickers"
-          // onChange={onHandleChange}
+          onChange={onFilterChange}
         />
       </form>
     </header>

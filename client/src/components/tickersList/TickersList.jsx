@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
 
-import { getTickers } from '../../redux/tickers-operations';
-import getAllTickers from '../../redux/tickers-selectors';
+import { getTickers } from '../../redux/tickers/tickers-operations';
+import { getFiltredTickers } from '../../redux/tickers/tickers-selectors';
 import TickersListItem from '../tickersListItem/TickersListItem';
 
 import styles from './TickersList.module.scss';
@@ -16,7 +16,7 @@ const TickersList = () => {
     dispatch(getTickers());
   }, [dispatch]);
 
-  const tickers = useSelector(getAllTickers);
+  const tickers = useSelector(getFiltredTickers);
   // const tickersTest = [
   //   {
   //     change: '46.78',
@@ -71,10 +71,9 @@ const TickersList = () => {
             {/* <li className={styles.tickerDetailHead_item}>Last trade time</li> */}
           </ul>
           <ul className={styles.tickersList}>
-            {tickers.length > 0 &&
-              tickers.map(ticker => (
-                <TickersListItem key={uuid()} {...ticker} />
-              ))}
+            {tickers.map(ticker => (
+              <TickersListItem key={uuid()} {...ticker} />
+            ))}
           </ul>
         </div>
       )}

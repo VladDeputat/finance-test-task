@@ -1,15 +1,14 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
-import reducers from "../redux/tickers-reducers";
+import tickerReducers from './tickers/tickers-reducers';
+import timerReducer from './timer/timer-reducers';
 
-const tickersReducer = combineReducers({
-  tickers: reducers.tickersReducers,
-});
-
-let store = configureStore({
-  reducer: {
-    tickers: tickersReducer,
-  },
+const store = configureStore({
+  reducer: combineReducers({
+    tickers: tickerReducers.tickersReducer,
+    filter: tickerReducers.filterReducer,
+    interval: timerReducer,
+  }),
 });
 
 // eslint-disable-next-line

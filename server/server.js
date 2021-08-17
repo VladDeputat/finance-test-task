@@ -6,6 +6,7 @@ const cors = require("cors");
 
 const FETCH_INTERVAL = 5000;
 const PORT = process.env.PORT || 4000;
+let interval = FETCH_INTERVAL;
 
 const tickers = [
   "AAPL", // Apple
@@ -44,9 +45,6 @@ function getQuotes(socket) {
     yield: randomValue(0, 2, 2),
     last_trade_time: utcDate(),
   }));
-  // .sort(function (a, b) {
-  //   return b.price - a.price;
-  // });
 
   socket.emit("ticker", quotes);
 }
@@ -58,7 +56,7 @@ function trackTickers(socket) {
   // every N seconds
   const timer = setInterval(function () {
     getQuotes(socket);
-  }, FETCH_INTERVAL);
+  }, interval);
 
   socket.on("disconnect", function () {
     clearInterval(timer);
@@ -80,8 +78,12 @@ app.get("/", function (req, res) {
 });
 
 socketServer.on("connection", (socket) => {
+  socket.emit("curInterval", interval);
   socket.on("start", () => {
     trackTickers(socket);
+  });
+  socket.on("timer", (time) => {
+    interval = time * 1000;
   });
 });
 

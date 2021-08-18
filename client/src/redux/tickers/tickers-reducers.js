@@ -4,7 +4,7 @@ import { getTickersSuccess, filterTickers } from './tickers-actions';
 const initialState = [];
 
 const tickersReducer = createReducer(initialState, {
-  [getTickersSuccess]: (_, { payload }) => payload,
+  [getTickersSuccess]: (state, { payload }) => [...state, payload],
 });
 
 const filterReducer = createReducer('', {

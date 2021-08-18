@@ -16,45 +16,17 @@ const TickersList = () => {
     dispatch(getTickers());
   }, [dispatch]);
 
-  const tickers = useSelector(getFiltredTickers);
-  // const tickersTest = [
-  //   {
-  //     change: '46.78',
-  //     change_percent: '0.55',
-  //     dividend: '0.37',
-  //     exchange: 'NASDAQ',
-  //     last_trade_time: '2021-08-12T07:15:57.000Z',
-  //     price: '100.10',
-  //     ticker: 'ONE',
-  //     yield: '1.40',
-  //   },
-  //   {
-  //     change: '46.78',
-  //     change_percent: '0.55',
-  //     dividend: '0.37',
-  //     exchange: 'NASDAQ',
-  //     last_trade_time: '2021-08-12T07:15:57.000Z',
-  //     price: '150.15',
-  //     ticker: 'TWO',
-  //     yield: '1.40',
-  //   },
-  //   {
-  //     change: '46.78',
-  //     change_percent: '0.55',
-  //     dividend: '0.37',
-  //     exchange: 'NASDAQ',
-  //     last_trade_time: '2021-08-12T07:15:57.000Z',
-  //     price: '220.20',
-  //     ticker: 'THREE',
-  //     yield: '1.40',
-  //   },
-  // ];
+  let tickers = useSelector(getFiltredTickers);
 
-  // const sorted = tickers.sort(function (a, b) {
-  //   return a.price - b.price;
-  // });
+  // let tickersToShow = names;
+  // let tickersToRecommend = [];
 
-  // console.log(sorted);
+  // const handleDelete = e => {
+  //   tickersToShow = tickersToShow.filter(
+  //     ({ ticker }) => ticker !== e.target.id,
+  //   );
+  //   tickersToRecommend.push(e.target.id);
+  // };
 
   return (
     <>
@@ -68,11 +40,14 @@ const TickersList = () => {
             <li className={styles.tickerDetailHead_item}>Change %</li>
             <li className={styles.tickerDetailHead_item}>Dividend</li>
             <li className={styles.tickerDetailHead_item}>Income</li>
-            {/* <li className={styles.tickerDetailHead_item}>Last trade time</li> */}
           </ul>
           <ul className={styles.tickersList}>
             {tickers.map(ticker => (
-              <TickersListItem key={uuid()} {...ticker} />
+              <TickersListItem
+                key={uuid()}
+                {...ticker}
+                // handleDelete={handleDelete}
+              />
             ))}
           </ul>
         </div>

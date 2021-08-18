@@ -1,4 +1,4 @@
-import socket from '../../helpers/socket';
+import { socket } from '../../helpers/socket';
 import {
   getTickersRequest,
   getTickersSuccess,
@@ -9,7 +9,6 @@ const getTickers = () => async dispatch => {
   dispatch(getTickersRequest());
 
   try {
-    socket.emit('start');
     socket.on('ticker', function (res) {
       dispatch(getTickersSuccess(res));
     });

@@ -1,16 +1,23 @@
 import { createSelector } from 'reselect';
 
-const getAllTickers = state => state.tickers;
+const getFreshTickers = ({ tickers }) =>
+  tickers.length > 0 ? tickers[tickers.length - 1] : [];
+
 const getFilter = state => state.filter;
 
 const getFiltredTickers = createSelector(
-  [getAllTickers, getFilter],
+  [getFreshTickers, getFilter],
   (tickers, filter) => {
     const normFilter = filter.toLowerCase();
-    return tickers?.filter(({ ticker }) =>
+    return tickers.filter(({ ticker }) =>
       ticker.toLowerCase().includes(normFilter),
     );
   },
 );
 
-export { getAllTickers, getFilter, getFiltredTickers };
+const lastTradeTimeSelector = ({ tickers }) =>
+  tickers.length > 0
+    ? tickers[tickers.length - 1][0].last_trade_time
+    : 'some time';
+
+export { getFreshTickers, getFilter, getFiltredTickers, lastTradeTimeSelector };

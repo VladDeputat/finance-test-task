@@ -11,8 +11,8 @@ export default function SearchBar() {
 
   return (
     <header className={styles.Searchbar}>
-      <form className={styles.SearchForm} onSubmit>
-        <button type="submit" className={styles.SearchFormButton}>
+      <form className={styles.SearchForm}>
+        <button type="button" className={styles.SearchFormButton}>
           <span className={styles.SearchFormButtonLabel}>Search</span>
         </button>
 
@@ -20,7 +20,6 @@ export default function SearchBar() {
           className={styles.SearchFormInput}
           name="query"
           type="text"
-          // value={this.state.query}
           autoComplete="off"
           placeholder="Search tickers"
           onChange={onFilterChange}

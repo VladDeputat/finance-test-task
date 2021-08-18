@@ -1,3 +1,4 @@
+import ConnectionButton from '../components/connectionBar/ConnectionButton';
 import Container from '../components/container/Container';
 import Header from '../components/header/Header';
 import SearchBar from '../components/searchBar/SearchBar';
@@ -13,6 +14,7 @@ const HomePage = () => {
       <SearchBar />
       <Container>
         <TimeScale />
+        <ConnectionButton />
         <TickersList />
       </Container>
     </>

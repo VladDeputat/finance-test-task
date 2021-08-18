@@ -1,9 +1,10 @@
-import socket from '../../helpers/socket';
+import { socket } from '../../helpers/socket';
 import {
   setTimerRequest,
   setTimerSuccess,
   setTimerError,
-} from './timer-actions';
+  setConnection,
+} from './params-actions';
 
 const setTimer = time => async dispatch => {
   dispatch(setTimerRequest());
@@ -26,4 +27,8 @@ const getCurInterval = () => async dispatch => {
   });
 };
 
-export { setTimer, getCurInterval };
+const setConnect = res => async dispatch => {
+  dispatch(setConnection(res));
+};
+
+export { setTimer, getCurInterval, setConnect };

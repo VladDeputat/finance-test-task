@@ -28,3 +28,22 @@
   font-size: 20px;
   margin-left: 20px;
 }
+
+.tickerDetailsList_delete {
+  margin-left: 5px;
+  outline: none;
+  border: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-image: url(../../img//delete-icon.svg);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transition: all 250ms linear;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #d44242;
+    transform: scale(1.1);
+  }
+}

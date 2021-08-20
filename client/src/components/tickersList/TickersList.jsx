@@ -4,7 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
 
 import { getTickers } from '../../redux/tickers/tickers-operations';
-import { getFiltredTickers } from '../../redux/tickers/tickers-selectors';
+import {
+  getFiltredTickers,
+  getPrevTickers,
+} from '../../redux/tickers/tickers-selectors';
 import TickersListItem from '../tickersListItem/TickersListItem';
 
 import styles from './TickersList.module.scss';
@@ -16,17 +19,18 @@ const TickersList = () => {
     dispatch(getTickers());
   }, [dispatch]);
 
-  let tickers = useSelector(getFiltredTickers);
+  const freshTickers = useSelector(getFiltredTickers);
+  const prevTickers = useSelector(getPrevTickers);
 
-  // let tickersToShow = names;
-  // let tickersToRecommend = [];
+  const tickers = freshTickers.map(item => {
+    const it = prevTickers?.map(({ ticker, price }) => {
+      return { ticker, prevPrice: price };
+    });
+    const prevPrice = it?.filter(({ ticker }) => ticker === item.ticker)[0]
+      .prevPrice;
 
-  // const handleDelete = e => {
-  //   tickersToShow = tickersToShow.filter(
-  //     ({ ticker }) => ticker !== e.target.id,
-  //   );
-  //   tickersToRecommend.push(e.target.id);
-  // };
+    return { ...item, prevPrice };
+  });
 
   return (
     <>

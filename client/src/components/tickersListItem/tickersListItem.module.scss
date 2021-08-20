@@ -1,6 +1,18 @@
 .tickerListItem {
   margin-bottom: 10px;
   border-bottom: 1px solid #dddddd;
+  border-radius: 20px;
+  display: flex;
+}
+
+.tickerListItem_positive {
+  @extend .tickerListItem;
+  background-color: #4dc457;
+}
+
+.tickerListItem_negative {
+  @extend .tickerListItem;
+  background-color: #ec7575;
 }
 
 .tickerDetailsList {
@@ -10,10 +22,11 @@
 .tickerDetail_ticker {
   display: flex;
   width: 70px;
-  height: 25px;
+  height: 35px;
   justify-content: center;
   align-items: center;
-  background-color: #005e08;
+  // background-color: #005e08;
+  background-color: #4d008b;
   border-radius: 20px;
   color: #fff;
   font-weight: 700;
@@ -29,21 +42,39 @@
   margin-left: 20px;
 }
 
+.tickerDetailsList_arow {
+  display: block;
+  margin-left: 10px;
+  width: 35px;
+  height: 35px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.tickerDetailsList_arow_positive {
+  @extend .tickerDetailsList_arow;
+  background-image: url(../../img/arrow-up.svg);
+}
+.tickerDetailsList_arow_negative {
+  @extend .tickerDetailsList_arow;
+  background-image: url(../../img/arrow-down.svg);
+}
+
 .tickerDetailsList_delete {
   margin-left: 5px;
   outline: none;
-  border: none;
-  width: 25px;
-  height: 25px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   background-image: url(../../img//delete-icon.svg);
   background-repeat: no-repeat;
   background-position: 50%;
   transition: all 250ms linear;
+  border: 1px solid #585858;
 
   &:hover {
     cursor: pointer;
-    background-color: #d44242;
+    background-color: #fd3939;
     transform: scale(1.1);
   }
 }

@@ -8,7 +8,7 @@ const FETCH_INTERVAL = 5000;
 const PORT = process.env.PORT || 4000;
 let interval = FETCH_INTERVAL;
 
-const tickers = [
+const initialTickers = [
   "AAPL", // Apple
   "GOOGL", // Alphabet
   "MSFT", // Microsoft
@@ -16,6 +16,9 @@ const tickers = [
   "FB", // Facebook
   "TSLA", // Tesla
 ];
+
+let tickersToRecommend = [];
+let tickersToShow = [...initialTickers];
 
 function randomValue(min = 0, max = 1, precision = 0) {
   const random = Math.random() * (max - min) + min;
@@ -35,7 +38,7 @@ function utcDate() {
 }
 
 function getQuotes(socket) {
-  const quotes = tickers.map((ticker) => ({
+  const quotes = tickersToShow.map((ticker) => ({
     ticker,
     exchange: "NASDAQ",
     price: randomValue(100, 300, 2),
@@ -82,8 +85,27 @@ socketServer.on("connection", (socket) => {
   socket.on("start", () => {
     trackTickers(socket);
   });
+  socket.emit("tickersToRecommend", tickersToRecommend);
   socket.on("timer", (time) => {
     interval = time * 1000;
+  });
+  socket.on("setTicker", (ticker) => {
+    tickersToRecommend = tickersToRecommend.filter((item) => item !== ticker);
+    tickersToShow = initialTickers.filter(
+      (item) => !tickersToRecommend.includes(item)
+    );
+    getQuotes(socket);
+    socket.emit("tickersToRecommend", tickersToRecommend);
+  });
+  socket.on("unsetTicker", (ticker) => {
+    if (!tickersToRecommend.includes(ticker)) {
+      tickersToRecommend.push(ticker);
+    }
+    tickersToShow = initialTickers.filter(
+      (item) => !tickersToRecommend.includes(item)
+    );
+    getQuotes(socket);
+    socket.emit("tickersToRecommend", tickersToRecommend);
   });
 });
 

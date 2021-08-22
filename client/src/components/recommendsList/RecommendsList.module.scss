@@ -1,0 +1,34 @@
+.recommendsListBox {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.recommendsListHeading {
+  text-align: center;
+  font-weight: 700;
+  font-size: 24px;
+  text-align: center;
+}
+
+.recommendsList {
+  margin: 0 auto;
+  padding: 10px 65px 10px 65px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.recommendsListItem {
+  display: flex;
+  width: 70px;
+  height: 35px;
+  justify-content: center;
+  align-items: center;
+  background-color: #4d008b;
+  border-radius: 20px;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 10px;
+  margin: 10px auto 0 auto;
+}

@@ -1,4 +1,6 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { unsetTicker } from '../../redux/tickers/tickers-operations';
 import styles from './tickersListItem.module.scss';
 
 const TickersListItem = ({
@@ -9,8 +11,13 @@ const TickersListItem = ({
   change_percent,
   dividend,
   yield: income,
-  handleDelete,
 }) => {
+  const dispatch = useDispatch();
+
+  const handleDelete = e => {
+    dispatch(unsetTicker(e.target.id));
+  };
+
   const stylePicker = () => {
     let listItemStyle = styles.tickerListItem;
     let arrowStyle = styles.tickerDetailsList_arow;

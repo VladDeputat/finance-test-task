@@ -7,12 +7,12 @@
 
 .tickerListItem_positive {
   @extend .tickerListItem;
-  background-color: #4dc457;
+  background-color: #4dc45777;
 }
 
 .tickerListItem_negative {
   @extend .tickerListItem;
-  background-color: #ec7575;
+  background-color: #ec75757c;
 }
 
 .tickerDetailsList {
@@ -25,7 +25,6 @@
   height: 35px;
   justify-content: center;
   align-items: center;
-  // background-color: #005e08;
   background-color: #4d008b;
   border-radius: 20px;
   color: #fff;
@@ -62,7 +61,6 @@
 
 .tickerDetailsList_delete {
   margin-left: 5px;
-  outline: none;
   width: 35px;
   height: 35px;
   border-radius: 50%;
@@ -71,10 +69,12 @@
   background-position: 50%;
   transition: all 250ms linear;
   border: 1px solid #585858;
+  background-color: #c9c9c9;
 
   &:hover {
     cursor: pointer;
-    background-color: #fd3939;
+    background-color: rgb(255, 75, 75);
     transform: scale(1.1);
+    background-image: url(../../img//delete-icon2.svg);
   }
 }

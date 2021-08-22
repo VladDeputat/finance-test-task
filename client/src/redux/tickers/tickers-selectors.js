@@ -8,6 +8,8 @@ const getPrevTickers = ({ tickers }) =>
 
 const getFilter = state => state.filter;
 
+const tickersToRecommendSelector = state => state.tickersToRecommend;
+
 const getFiltredTickers = createSelector(
   [getFreshTickers, getFilter],
   (tickers, filter) => {
@@ -19,14 +21,14 @@ const getFiltredTickers = createSelector(
 );
 
 const lastTradeTimeSelector = ({ tickers }) =>
-  tickers.length > 0
-    ? tickers[tickers.length - 1][0].last_trade_time
-    : 'some time';
+  (tickers.length > 0 && tickers[tickers.length - 1][0]?.last_trade_time) ||
+  'some time';
 
 export {
   getFreshTickers,
   getPrevTickers,
   getFilter,
   getFiltredTickers,
+  tickersToRecommendSelector,
   lastTradeTimeSelector,
 };

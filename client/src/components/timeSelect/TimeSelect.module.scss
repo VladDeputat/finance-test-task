@@ -1,0 +1,32 @@
+.intervalSelect_box {
+  padding: 20px 0 20px 0;
+  width: 100%;
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.intervalSelect_subbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.intervalSelect_text {
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+}
+
+.intervalSelect {
+  padding-left: 7px;
+  width: 50px;
+  margin: 0 10px 0 10px;
+  font-weight: 700;
+  font-size: 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  color: #364270;
+}

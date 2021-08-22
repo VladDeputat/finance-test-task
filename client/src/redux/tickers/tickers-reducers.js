@@ -1,10 +1,20 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { getTickersSuccess, filterTickers } from './tickers-actions';
+import {
+  getTickersSuccess,
+  setTickerSuccess,
+  unsetTickerSuccess,
+  filterTickers,
+} from './tickers-actions';
 
 const initialState = [];
 
 const tickersReducer = createReducer(initialState, {
   [getTickersSuccess]: (state, { payload }) => [...state, payload],
+});
+
+const tickersToRecommendReducer = createReducer(initialState, {
+  [setTickerSuccess]: (_, { payload }) => payload,
+  [unsetTickerSuccess]: (_, { payload }) => payload,
 });
 
 const filterReducer = createReducer('', {
@@ -13,6 +23,7 @@ const filterReducer = createReducer('', {
 
 const tickerReducers = {
   tickersReducer,
+  tickersToRecommendReducer,
   filterReducer,
 };
 

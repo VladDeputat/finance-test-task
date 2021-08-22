@@ -27,15 +27,15 @@ const TickersList = () => {
       return { ticker, prevPrice: price };
     });
     const prevPrice = it?.filter(({ ticker }) => ticker === item.ticker)[0]
-      .prevPrice;
+      ?.prevPrice;
 
     return { ...item, prevPrice };
   });
 
   return (
-    <>
-      {tickers.length > 0 && (
-        <div className={styles.tickersListBox}>
+    <div className={styles.tickersListBox}>
+      {tickers.length > 0 ? (
+        <>
           <h1 className={styles.tickersListHeading}>Tickers Live</h1>
           <ul className={styles.tickerDetailHead}>
             <li className={styles.tickerDetailHead_item}>Ticker</li>
@@ -43,20 +43,18 @@ const TickersList = () => {
             <li className={styles.tickerDetailHead_item}>Change</li>
             <li className={styles.tickerDetailHead_item}>Change %</li>
             <li className={styles.tickerDetailHead_item}>Dividend</li>
-            <li className={styles.tickerDetailHead_item}>Income</li>
+            <li className={styles.tickerDetailHead_item}>Yield</li>
           </ul>
           <ul className={styles.tickersList}>
             {tickers.map(ticker => (
-              <TickersListItem
-                key={uuid()}
-                {...ticker}
-                // handleDelete={handleDelete}
-              />
+              <TickersListItem key={uuid()} {...ticker} />
             ))}
           </ul>
-        </div>
+        </>
+      ) : (
+        <h1 className={styles.tickersListHeading}>No tickers to show</h1>
       )}
-    </>
+    </div>
   );
 };
 

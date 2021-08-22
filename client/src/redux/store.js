@@ -6,6 +6,7 @@ import { timerReducer, connectionReducer } from './params/params-reducers';
 const store = configureStore({
   reducer: combineReducers({
     tickers: tickerReducers.tickersReducer,
+    tickersToRecommend: tickerReducers.tickersToRecommendReducer,
     filter: tickerReducers.filterReducer,
     interval: timerReducer,
     isConnected: connectionReducer,
